@@ -39,8 +39,8 @@ http://api.nbp.pl/api/exchangerates/rates/{table}/code}/{date}/
 
 # Install and start the program:
 
-1. Download the **.jar** file from the out/artifacts folder to your computer;
-2. Open the terminal of your operating system in the folder where the file was downloaded (about 8 mb);
-4. type in the console the command **java -jar REST-java-project.jar currency.App** ;
-5. program ready to use.
+1. Download the **rates-app.jar** file from the out/artifacts folder to your computer;
+2. Open the terminal of your operating system in the folder where the file was downloaded (file has size about 8 mb);
+3. Type in the console the command **java -jar rates-app.jar rates.App** ;
+4. Program ready to use.
 
