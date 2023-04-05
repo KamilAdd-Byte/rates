@@ -2,10 +2,9 @@ package org.rates.presentation.app;
 
 import org.rates.data.currency.NbpValueCurrency;
 import org.rates.data.gold.NbpValueGold;
-import org.rates.presentation.codes.DisplayCurrency;
+import org.rates.presentation.scrap.ScrapCurrency;
 import org.rates.presentation.view.AppInfo;
 import org.rates.presentation.view.AppMenu;
-
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -47,8 +46,8 @@ public class RatesLogicApp implements Runnable {
                 }
 
                 case CODE -> {
-                    DisplayCurrency ajp = new DisplayCurrency();
-                    ajp.getCodeWithWiki();
+                    ScrapCurrency scrapCurrency = new ScrapCurrency();
+                    scrapCurrency.getCodeWithWiki();
                 }
 
                 case GOLD -> {

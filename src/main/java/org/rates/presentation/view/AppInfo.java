@@ -23,22 +23,22 @@ public class AppInfo extends Display {
 
 
     public void printTitle() {
-        printValue(title);
+        displayContent(title);
     }
 
     public void printAuthor() {
-        printValue(author);
+        displayContent(author);
     }
     public void printProgramExit() {
-        printValue(exit);
+        displayContent(exit);
     }
     public void printAppBanner() {
-        printValue(appBanner.toString());
+        displayContent(appBanner.toString());
     }
     public void printDefaultValue() {
-        printValue(other);
+        displayContent(other);
     }
     public void printVersion() {
-        printValue(version);
+        displayContent(version);
     }
 }
