@@ -6,6 +6,7 @@ import org.rates.presentation.scrap.ScrapCurrency;
 import org.rates.presentation.view.AppInfo;
 import org.rates.presentation.view.AppMenu;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -42,6 +43,8 @@ public class RatesLogicApp implements Runnable {
                         nbpValueCurrency.getCurrencyValueOnNbpApi();
                     } catch (FileNotFoundException e) {
                         e.getMessage();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
                     }
                 }
 

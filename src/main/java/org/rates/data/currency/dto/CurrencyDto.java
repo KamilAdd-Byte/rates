@@ -1,15 +1,19 @@
 package org.rates.data.currency.dto;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.rates.export.csv.CurrencySerializer;
 
 import java.util.List;
 
 @JsonPropertyOrder({"table","currency","code","rates"})
+@JsonSerialize(using = CurrencySerializer.class)
 public class CurrencyDto {
 
     private String table;
     private String currency;
     private String code;
+
     private List<RatesDto> rates;
 
     public String getTable() {
