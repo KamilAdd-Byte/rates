@@ -12,6 +12,7 @@ import org.rates.connection.ConnectionCreator;
 import org.rates.data.currency.dto.CurrencyDto;
 import org.rates.data.lineitem.JsonLine;
 import org.rates.data.lineitem.JsonLineValue;
+import org.rates.export.csv.CSVPreparer;
 
 import java.io.*;
 import java.net.URL;
@@ -55,7 +56,7 @@ public class NbpValueCurrency extends ConnectionCreator implements JsonLineValue
         NbpValueCurrency.date = date;
     }
 
-    public void getCurrencyValueOnNbpApi() throws FileNotFoundException {
+    public void getCurrencyValueOnNbpApi() throws IOException {
             jsonLine = getJsonLine();
 
             Gson gson = new Gson();
@@ -82,33 +83,16 @@ public class NbpValueCurrency extends ConnectionCreator implements JsonLineValue
                 .getOrElse(JsonLine.empty());
     }
 
-    private static void printCurrencyValue(CurrencyDto currency) {
+    private static void printCurrencyValue(CurrencyDto currency) throws IOException {
         System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Pozyskane dane: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
         System.out.println(currency);
         System.out.println("VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV");
+        printCurrencyToCsv(currency);
     }
 
-    public static void printCurrencyToCsv() throws IOException {
-
-        File file = new File("currency.csv");
-
-        CsvMapper mapperCsv = new CsvMapper(); // instancja CsvMappera
-        mapperCsv.enable(CsvParser.Feature.EMPTY_STRING_AS_NULL); //pomijanie nierozpoznanych typów
-
-        CsvSchema columns = CsvSchema.builder().setUseHeader(true) //utworzenie kolumn
-                .addColumn("table")
-                .addColumn("currency")
-                .addColumn("code")
-                .addColumn("rates")
-                .addColumn("no")
-                .addColumn("effectiveDate")
-                .addColumn("mid")
-                .addColumn("bid")
-                .addColumn("ask")
-                .build();
-
-        ObjectWriter writer = mapperCsv.writerWithSchemaFor(CurrencyDto.class).with(columns);
-        writer.writeValues(file).write(currency);
+    public static void printCurrencyToCsv(CurrencyDto dto) throws IOException {
+        CSVPreparer csvPreparer = new CSVPreparer();
+        csvPreparer.prepareCsv("curr",dto);
     }
 
     /**
